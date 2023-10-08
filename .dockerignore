@@ -1,0 +1,10 @@
+__pycache__
+.env
+.vscode
+.venv/
+docs/
+lib/
+res/
+tests/
+Dockerfile
+Makefile
