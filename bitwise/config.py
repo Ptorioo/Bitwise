@@ -4,13 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-Config = namedtuple(
+configTuple = namedtuple(
     "Config",
     [
         "BOT_TOKEN",
     ],
 )
 
-config = Config(
+Config = configTuple(
     BOT_TOKEN=os.getenv("BOT_TOKEN"),
 )

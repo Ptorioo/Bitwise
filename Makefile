@@ -25,9 +25,7 @@ Usage:
 	make <command>
 
 Commands:
-	run                        Run the bot with poetry.
-	install                    Install dependencies within virtualenv.
-	venv                       Enter the virtualenv.
+	run                        Run the bot with poetry. (Manual command for venv entry is required.)
 	config                     Set virtualenvs.in-project config value to true.
 	reformat                   Reformat all .py files being tracked by git.
 	stylecheck                 Check which tracked .py files need reformatting.
@@ -46,17 +44,9 @@ endif
 
 ROOT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-run: install
-	poetry run $(PYTHON) bitwise/__main__.py
+run:
+	poetry run python3 bitwise/__main__.py
 .PHONY: run
-
-install: venv
-	poetry install
-.PHONY: install
-
-venv: config
-	poetry shell
-.PHONY: venv
 
 config:
 	poetry config virtualenvs.in-project true
