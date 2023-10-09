@@ -1,5 +1,5 @@
 import discord
-from core.bitwise import Bitwise
+from meta.core import Bitwise
 from helper.config import Config
 
 

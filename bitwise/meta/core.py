@@ -2,8 +2,8 @@ import os
 import discord
 from discord.ext import commands
 from discord.message import Message
-from settings import Settings
-from bitwise.helper.logger import Logger
+from .settings import Settings
+from helper.logger import Logger
 
 
 class Bitwise(commands.AutoShardedBot):
