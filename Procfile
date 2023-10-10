@@ -1,1 +1,0 @@
-worker: python3 bitwise/main.py
