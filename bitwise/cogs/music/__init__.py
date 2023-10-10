@@ -1,1 +1,1 @@
-from . import music
+from . import player
