@@ -6,7 +6,11 @@ from helper.config import Config
 
 
 async def main():
-    with Bitwise(intents=discord.Intents.all()) as bot:
+    with Bitwise(
+            intents=discord.Intents.all(),
+            application_id=Config.APP_ID,
+        ) as bot:
+        
         await bot.start(token=Config.BOT_TOKEN)
 
 

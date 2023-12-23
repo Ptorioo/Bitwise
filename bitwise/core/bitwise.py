@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.message import Message
 from .settings import Settings
 from helper.logger import logger
-
+import aiohttp
 
 class Bitwise(commands.AutoShardedBot):
     def __enter__(self):
@@ -34,6 +34,7 @@ class Bitwise(commands.AutoShardedBot):
         )
 
         self.activity = discord.Game("@Bitwise help")
+        self.session = None
 
     async def setup_hook(self):
         for root, _, files in os.walk("bitwise/cogs"):
@@ -47,7 +48,15 @@ class Bitwise(commands.AutoShardedBot):
 
                 logger.info(f"cogs.{directory_name}.{name} loaded.")
                 await self.load_extension(f"cogs.{directory_name}.{name}")
+        
+        try:
+            synced = await self.tree.sync()
+            logger.info(f"Synced {len(synced)} command(s).")
+        except Exception as e:
+            logger.info(f"Error: {e}")        
 
+        self.session = aiohttp.ClientSession()
+        
         await self.load_extension("jishaku")
 
     async def on_ready(self):
@@ -55,3 +64,7 @@ class Bitwise(commands.AutoShardedBot):
 
     async def on_message(self, message: Message):
         return await super().on_message(message)
+    
+    async def close(self):
+        await super().close()
+        await self.session.close()

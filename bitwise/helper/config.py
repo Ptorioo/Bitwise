@@ -8,9 +8,11 @@ configTuple = namedtuple(
     "Config",
     [
         "BOT_TOKEN",
+        "APP_ID",
     ],
 )
 
 Config = configTuple(
     BOT_TOKEN=os.getenv("BOT_TOKEN"),
+    APP_ID=os.getenv("APP_ID"),
 )
